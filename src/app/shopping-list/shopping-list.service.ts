@@ -30,6 +30,15 @@ export class ShoppingListService {
     this.ingredientAdded.emit(ingredient);
   }
 
+  addIngridients(ingredients: Ingredient[]) {
+    this.log.log(ShoppingListService.name, "addIngredients");
+    // ingridients.forEach(i => {
+    //   this.addIngredient(i);
+    // });
+    this.ingredients.push(...ingredients);
+    this.ingredientAdded.emit(ingredients[0]);
+  }
+
   deleteIngredient(ingredient: Ingredient) {
     const index = this.ingredients.findIndex(i => i.name === ingredient.name);
     if (index >= -1) {
