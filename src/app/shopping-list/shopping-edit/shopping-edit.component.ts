@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import { Ingredient } from "src/app/shared/ingredient.model";
 import { FormsModule } from "@angular/forms";
+import { ShoppingListService } from "../shopping-list.service";
 
 @Component({
   selector: "app-shopping-edit",
@@ -17,25 +18,25 @@ import { FormsModule } from "@angular/forms";
 })
 export class ShoppingEditComponent implements OnInit {
   @Input() ingredient: Ingredient;
-  @Output() ingredientAdded = new EventEmitter<Ingredient>();
 
   @ViewChild("nameInput", { static: false }) nameInputRef: ElementRef;
   @ViewChild("amountInput", { static: false }) amountInputRef: ElementRef;
 
-  ingredient_name: string;
-
-  constructor() {
-    this.ingredient_name = "";
-  }
+  constructor(private shoppingListService: ShoppingListService) {}
 
   ngOnInit() {}
 
-  onAddIgredient() {
+  onAddIngredient() {
     const newIgredient = new Ingredient(
       this.nameInputRef.nativeElement.value,
       this.amountInputRef.nativeElement.value
     );
-    this.ingredientAdded.emit(newIgredient);
+    this.shoppingListService.addIngredient(newIgredient);
+  }
+
+  onDeleteIngredient() {
+    this.shoppingListService.deleteIngredient(this.ingredient);
+    this.onClearForm();
   }
 
   onClearForm() {

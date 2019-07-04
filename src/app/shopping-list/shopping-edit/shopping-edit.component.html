@@ -5,8 +5,7 @@
         <div class="col-sm-5 form-group">
           <label for="name">
             Name
-            <input type="text" id="name" class="form-control" />
-            />
+            <input type="text" id="name" class="form-control" #nameInput />
           </label>
         </div>
         <div class="col-sm-2 form-group">
@@ -25,7 +24,7 @@
             <button
               class="btn btn-success"
               type="button"
-              (click)="onAddIgredient()"
+              (click)="onAddIngredient()"
             >
               Add
             </button>
@@ -36,7 +35,13 @@
             >
               Clear
             </button>
-            <button class="btn btn-danger" type="button">Delete</button>
+            <button
+              class="btn btn-danger"
+              type="button"
+              (click)="onDeleteIngredient()"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
