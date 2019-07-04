@@ -8,6 +8,7 @@ import {
   Input
 } from "@angular/core";
 import { Ingredient } from "src/app/shared/ingredient.model";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "app-shopping-edit",
